@@ -3,17 +3,22 @@ import { ClicksCollection } from '/imports/api/clicks';
 
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 
+Meteor.methods({
+  async 'clicked'() {
+    console.log('clicked')
+    await ClicksCollection.insertAsync({ date: new Date() });
+  }
+});
+
 Meteor.startup(async () => {
-  Meteor.publish("clicks", function () {
-    return ClicksCollection.find();
-  });
+  const rateLimit = new Map();
 
   DDPRateLimiter.addRule({
     type: 'method',
-    name: 'clicks'
+    name: 'clicked'
   }, 1, 1000)
-
-  ClicksCollection.allow({
-    "insertAsync": () => true,
-  })
+  
+  Meteor.publish("clicks", function () {
+    return ClicksCollection.find();
+  });
 });
