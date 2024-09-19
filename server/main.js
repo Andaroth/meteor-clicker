@@ -3,14 +3,19 @@ import { ClicksCollection } from '/imports/api/clicks';
 
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 
+let count = 0
+
 Meteor.methods({
   async 'clicked'() {
-    const col = await ClicksCollection.find().fetch()
-    await ClicksCollection.insertAsync({ index: col.length, date: new Date() });
+    await ClicksCollection.insertAsync({ index: count, date: new Date() });
+    count += 1
   }
 });
 
 Meteor.startup(async () => {
+  const col = await ClicksCollection.find().fetch()
+  count = col.length
+
   DDPRateLimiter.addRule({
     type: 'method',
     name: 'clicked'
