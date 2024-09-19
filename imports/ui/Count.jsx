@@ -25,12 +25,12 @@ export const Count = () => {
     <div className="my-16">
       <button
         className={cn(
-          "border-2 mb-4 p-4 rounded-lg active:scale-95",
-          !isLoading() ? "border-[#0F0] bg-[#0F0] text-black" : "border-2 border-gray-600"
+          "border-2 mb-4 p-4 rounded-lg min-w-[160px]",
+          !isLoading() ? "border-[#0F0] bg-[#0F0] text-black hover:bg-black hover:border-[#F0F] hover:text-[#F0F]" : "border-2 border-gray-600"
         )}
         onClick={increment}
         disabled={isLoading()}
-      >{ !isStarting() ? (cooldown ? "Please wait ..." : "Pointless button") : "Loading..."}</button>
+      >{ cooldown ? "Please wait ..." : "Pointless button" }</button>
       <p>Internet pressed this button <br/><span className="text-4xl">{!isStarting() ? clicks[0].index : "many"}&nbsp;times!</span></p>
     </div>
   );

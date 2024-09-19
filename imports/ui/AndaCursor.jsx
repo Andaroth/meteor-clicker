@@ -26,7 +26,7 @@ export const AndaCursor = () => {
         || target?.parentNode?.parentNode?.classList?.contains('cursor-pointer')
       ) {
         setHover(true)
-        setCrossColor("#F0F")
+        setCrossColor("#00FF0088")
       } else {
         setHover(false)
         setCrossColor("#0F0")

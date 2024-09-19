@@ -10,4 +10,5 @@ a {
 
 a:hover {
   text-decoration: underline !important;
+  color: #F0F !important;
 }
