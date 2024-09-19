@@ -25,8 +25,8 @@ export const Count = () => {
     <div className="my-16">
       <button
         className={cn(
-          "mb-4 border-2 p-4 rounded-lg",
-          !isLoading() ? "border-[#0F0] hover:bg-[#0F0] hover:text-black active:scale-90" : "border-gray-600"
+          "border-2 mb-4 p-4 rounded-lg active:scale-95",
+          !isLoading() ? "border-[#0F0] bg-[#0F0] text-black" : "border-2 border-gray-600"
         )}
         onClick={increment}
         disabled={isLoading()}
