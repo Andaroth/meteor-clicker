@@ -4,7 +4,7 @@ import { AndaCursor } from './AndaCursor.jsx';
 
 export const App = () => (
   <div
-    className="bg-black text-white text-center flex flex-col justify-center h-[100dvh] overflow-hidden"
+    className="text-center flex flex-col justify-center h-[100dvh]"
   >
     <h1 className="text-lg md:text-4xl text-nowrap">&lt;AndaClicker&nbsp;/&gt;</h1>
     <Count/>
