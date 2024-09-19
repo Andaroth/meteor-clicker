@@ -6,11 +6,15 @@ export const App = () => (
   <div
     className="bg-black text-white text-center flex flex-col justify-center h-[100dvh] overflow-hidden"
   >
-    <h1 className="text-lg md:text-4xl">Pointless</h1>
+    <h1 className="text-lg md:text-4xl">Pointless<span className="hidden"> page XD</span></h1>
     <Count/>
-    <p className="mt-4">
-      <a className="text-[#0f0] cursor-pointer hover:underline" href="https://andapirate.com">Visit my wesite lmao</a>
-    </p>
+    <div className="flex justify-center">
+      <p className="flex flex-col gap-2 mt-4">
+        <a href="https://github.com/Andaroth/meteor-clicker" target="_blank">See this project's code</a>
+        <aside className="text-gray-600">or</aside>
+        <a href="https://andapirate.com" target="_blank">Visit my wesite lmao</a>
+      </p>
+    </div>
     <AndaCursor />
   </div>
 );
