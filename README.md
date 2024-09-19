@@ -9,3 +9,5 @@
 2. `npm install`
 
 3. `npm run start`
+
+i. This projects includes TailwindCSS
