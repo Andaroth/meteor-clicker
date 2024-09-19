@@ -8,7 +8,7 @@ export const Count = () => {
   const clicks = useFind(() => ClicksCollection.find());
 
   const increment = () => {
-    ClicksCollection.insertAsync({})
+    ClicksCollection.insertAsync({ date: new Date() })
   };
   
 
