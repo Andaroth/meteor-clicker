@@ -16,8 +16,9 @@ export const Count = () => {
   const increment = () => {
     if (isLoading()) return;
     setCooldown(true)
-    Meteor.call('clicked')
-    setTimeout(() => setCooldown(false), 500)
+    Meteor.call('clicked', () => {
+      setTimeout(() => setCooldown(false), 500)
+    })
   };
 
   return (
