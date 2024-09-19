@@ -7,6 +7,10 @@ let count = 0
 
 Meteor.methods({
   async 'clicked'() {
+    if (!count) {
+      const col = await ClicksCollection.find().fetch()
+      count = col.length
+    }
     await ClicksCollection.insertAsync({ index: count, date: new Date() });
     count += 1
   }
