@@ -5,7 +5,8 @@ import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 
 Meteor.methods({
   async 'clicked'() {
-    await ClicksCollection.insertAsync({ date: new Date() });
+    const col = await ClicksCollection.find().fetch()
+    await ClicksCollection.insertAsync({ index: col.length, date: new Date() });
   }
 });
 
@@ -17,7 +18,8 @@ Meteor.startup(async () => {
 
   DDPRateLimiter.setErrorMessage("You have to wait a few moments");
   
-  Meteor.publish("clicks", function () {
-    return ClicksCollection.find();
+  Meteor.publish("clicks", async function () {
+    const one = await ClicksCollection.find({}, { limit: 1, sort: { date: -1 } })
+    return one;
   });
 });

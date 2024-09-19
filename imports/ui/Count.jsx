@@ -31,7 +31,7 @@ export const Count = () => {
         onClick={increment}
         disabled={isLoading()}
       >{ !isStarting() ? (cooldown ? "Please wait ..." : "Pointless button") : "Loading..."}</button>
-      <p>Internet pressed this button <br/><span className="text-4xl">{!isStarting() ? clicks.length : "many"}&nbsp;times!</span></p>
+      <p>Internet pressed this button <br/><span className="text-4xl">{!isStarting() ? clicks[0].index : "many"}&nbsp;times!</span></p>
     </div>
   );
 };
