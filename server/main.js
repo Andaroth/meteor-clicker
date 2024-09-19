@@ -17,6 +17,10 @@ Meteor.startup(async () => {
     type: 'method',
     name: 'clicked'
   }, 1, 1000)
+
+  DDPRateLimiter.setErrorMessage(
+    "Vous devez attendre avant de cliquer à nouveau ^^"
+  );
   
   Meteor.publish("clicks", function () {
     return ClicksCollection.find();

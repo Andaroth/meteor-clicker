@@ -1,27 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
+
+import cn from "classnames"
 
 import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
 export const Count = () => {
+  const [cooldown, setCooldown] = useState(false)
   const loading = useSubscribe('clicks');
   const clicks = useFind(() => ClicksCollection.find());
 
   const increment = () => {
-    console.log('increment')
-    Meteor.call('clicked')
+    setCooldown(true)
+    try  {
+      Meteor.call('clicked')
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setTimeout(() => setCooldown(false), 500)
+    }
   };
   
+  const isLoading = () => loading() || cooldown
 
   return (
     <div className="my-16">
       <button
-        className="mb-4 border-2 border-[#0F0] p-4 rounded-lg hover:bg-[#0F0] hover:text-black active:scale-90"
+        className={cn(
+          "mb-4 border-2 p-4 rounded-lg",
+          !isLoading() ? "border-[#0F0] hover:bg-[#0F0] hover:text-black active:scale-90" : "border-gray-600"
+        )}
         onClick={increment}
-        disabled={loading()}
-      >{ !loading() ? "Bouton inutile" : "Chargement..."}</button>
-      <p>Internet a appuyé {!loading() ? clicks.length : "?"} fois sur ce bouton inutile.</p>
+        disabled={isLoading()}
+      >{ !loading() ? (cooldown ? "Please wait ..." : "Pointless button") : "Loading..."}</button>
+      <p>Internet pressed this button {!loading() ? clicks.length : "a certain amount of"} times.</p>
     </div>
   );
 };
