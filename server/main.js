@@ -13,7 +13,7 @@ Meteor.startup(async () => {
   DDPRateLimiter.addRule({
     type: 'method',
     name: 'clicked'
-  }, 1, 500)
+  }, 11, 1000)
 
   DDPRateLimiter.setErrorMessage("You have to wait a few moments");
   
