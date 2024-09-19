@@ -8,21 +8,17 @@ import { ClicksCollection } from '../api/clicks';
 
 export const Count = () => {
   const [cooldown, setCooldown] = useState(false)
-  const loading = useSubscribe('clicks');
+  const isStarting = useSubscribe('clicks');
   const clicks = useFind(() => ClicksCollection.find());
 
+  const isLoading = () => isStarting() || cooldown
+
   const increment = () => {
+    if (isLoading()) return;
     setCooldown(true)
-    try  {
-      Meteor.call('clicked')
-    } catch (e) {
-      console.log(e)
-    } finally {
-      setTimeout(() => setCooldown(false), 500)
-    }
+    Meteor.call('clicked')
+    setTimeout(() => setCooldown(false), 500)
   };
-  
-  const isLoading = () => loading() || cooldown
 
   return (
     <div className="my-16">
@@ -33,8 +29,8 @@ export const Count = () => {
         )}
         onClick={increment}
         disabled={isLoading()}
-      >{ !loading() ? (cooldown ? "Please wait ..." : "Pointless button") : "Loading..."}</button>
-      <p>Internet pressed this button {!loading() ? clicks.length : "a certain amount of"} times.</p>
+      >{ !isStarting() ? (cooldown ? "Please wait ..." : "Pointless button") : "Loading..."}</button>
+      <p>Internet pressed this button <br/><span className="text-4xl">{!isStarting() ? clicks.length : "many"}&nbsp;times!</span></p>
     </div>
   );
 };
