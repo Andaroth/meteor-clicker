@@ -4,6 +4,7 @@ body {
   font-family: monospace;
   background-color: black;
   color: white;
+  transition: all .5s ease;
 }
 
 a {
