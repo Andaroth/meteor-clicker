@@ -44,8 +44,14 @@ export const Count = ({className,...buttonProps}) => {
       frame.style.top = 0
       frame.style.left = 0
       frame.style.zIndex = -10
+      frame.style.transition = "all .5s ease"
       frame.classList.add = "md:scale-[1.5]"
       document.body.appendChild(frame)
+      setTimeout(() => {
+        frame.style.opacity = 0
+        document.body.style.color = "#FFF";
+        document.body.style.background = "#000";
+      }, 213000 - 500) // disappear at end
     }
   }, [appClicks])
 
