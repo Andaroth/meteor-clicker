@@ -26,11 +26,26 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks == 100) {
+    if (appClicks == 0x64) {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
       }, 1000)
+      const frame = document.createElement('iframe')
+      frame.src = "https://www.youtube.com/embed/oHg5SJYRHA0?si=nxuztyLhoGvTdJ_V&amp;controls=0&autoplay=1"
+      frame.title = "The game"
+      frame.frameborder = 0
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      frame.referrerPolicy = "strict-origin-when-cross-origin"
+      frame.allowfullscreen = true
+      frame.style.position = "fixed"
+      frame.style.width = "100vw"
+      frame.style.height = "100dvh"
+      frame.style.top = 0
+      frame.style.left = 0
+      frame.style.zIndex = -10
+      frame.classList.add = "md:scale-[1.5]"
+      document.body.appendChild(frame)
     }
   }, [appClicks])
 
