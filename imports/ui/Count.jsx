@@ -30,7 +30,7 @@ export const Count = ({className,...buttonProps}) => {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
-      }, 1000)
+      }, 500)
       const frame = document.createElement('iframe')
       frame.src = "https://www.youtube.com/embed/oHg5SJYRHA0?si=nxuztyLhoGvTdJ_V&amp;controls=0&autoplay=1"
       frame.title = "The game"
