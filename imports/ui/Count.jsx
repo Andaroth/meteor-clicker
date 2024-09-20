@@ -6,6 +6,8 @@ import cn from "classnames"
 import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
+import { isMobile } from 'react-device-detect';
+
 export const Count = ({className,...buttonProps}) => {
   const [cooldown, setCooldown] = useState(false)
   const [appClicks, setAppClicks] = useState(0)
@@ -26,32 +28,22 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks == 0x64) {
+    if (appClicks == 1) {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
       }, 500)
-      const frame = document.createElement('iframe')
-      frame.src = "https://www.youtube.com/embed/oHg5SJYRHA0?si=nxuztyLhoGvTdJ_V&amp;controls=0&autoplay=1"
-      frame.title = "The game"
-      frame.frameborder = 0
-      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      frame.referrerPolicy = "strict-origin-when-cross-origin"
-      frame.allowfullscreen = true
-      frame.style.position = "fixed"
-      frame.style.width = "100vw"
-      frame.style.height = "100dvh"
-      frame.style.top = 0
-      frame.style.left = 0
-      frame.style.zIndex = -10
-      frame.style.transition = "all .5s ease"
-      frame.classList.add = "md:scale-[1.5]"
-      document.body.appendChild(frame)
-      setTimeout(() => {
-        frame.style.opacity = 0
-        document.body.style.color = "#FFF";
-        document.body.style.background = "#000";
-      }, 213000 - 500) // disappear at end
+      const ricky = document.createElement('div')
+      ricky.classList.add('ricky')
+      document.body.appendChild(ricky)
+      const audio = document.createElement('audio')
+      audio.id = "Rickroll_8bit_by_AstrDynamite"
+      audio.dataTestid = "audioPlayerAudio"
+      audio.autoplay = true
+      audio.loop = true
+      audio.src = "./ricky AstrDynamite.mp3"
+      audio.style.display = "none"
+      document.body.appendChild(audio)
     }
   }, [appClicks])
 
