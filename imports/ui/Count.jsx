@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 
 import cn from "classnames"
@@ -6,8 +6,9 @@ import cn from "classnames"
 import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
-export const Count = () => {
+export const Count = ({className,...buttonProps}) => {
   const [cooldown, setCooldown] = useState(false)
+  const [appClicks, setAppClicks] = useState(0)
   const isStarting = useSubscribe('clicks');
   const clicks = useFind(() => ClicksCollection.find());
 
@@ -17,9 +18,19 @@ export const Count = () => {
     if (isLoading()) return;
     setCooldown(true)
     Meteor.call('clicked', () => {
-      setTimeout(() => setCooldown(false), 100)
+      setTimeout(() => {
+        setCooldown(false)
+        setAppClicks(appClicks + 1)
+      }, 100)
     })
   };
+
+  useEffect(() => {
+    if (appClicks >= 100) {
+      document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
+      document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
+    }
+  }, [appClicks])
 
   return (
     <div className="flex flex-col gap-2 my-16">
@@ -33,7 +44,12 @@ export const Count = () => {
             onClick={increment}
             disabled={isLoading()}
           >{ cooldown ? "Please wait ..." : "Pointless button" }</button>
-          <small>(caution: pointless)</small>
+          <small>({
+            appClicks >= 100 ? "THAT'S LIFE BRYAN!" :
+            appClicks >= 75 ? "side of life ♪" :
+            appClicks >= 50 ? "On the bright" :
+            appClicks >= 25 ? "Always look" :
+            "caution: pointless"})</small>
         </div>
       </div>
     
