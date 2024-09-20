@@ -26,9 +26,11 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks >= 100) {
-      document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
-      document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
+    if (appClicks == 100) {
+      setInterval(() => {
+        document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
+        document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
+      }, 1000)
     }
   }, [appClicks])
 
