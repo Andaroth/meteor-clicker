@@ -60,7 +60,7 @@ export const Count = ({className,...buttonProps}) => {
             disabled={isLoading()}
           >{ cooldown ? "Please wait ..." : "Pointless button" }</button>
           <small>({
-            appClicks >= 100 ? "THAT'S LIFE BRYAN!" :
+            appClicks >= 100 ? "THAT'S LIFE BRIAN!" :
             appClicks >= 75 ? "side of life ♪" :
             appClicks >= 50 ? "On the bright" :
             appClicks >= 25 ? "Always look" :
