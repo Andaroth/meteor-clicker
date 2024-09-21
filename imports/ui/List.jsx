@@ -35,7 +35,7 @@ export const List = () => {
         .map(cl => <div key={clicks.indexOf(cl)} className="flex flex-col justify-center">
           <div className="flex px-2 py-2 w-full border-b-2 border-[#333]">
             <p>{cl.index}</p>
-            <p className="ml-2 w-full text-left md:text-right">{formatDate(cl.date)}</p>
+            <p className="ml-2 w-full text-right">{formatDate(cl.date)}</p>
           </div>
         </div>
       ) : <div className="flex p-2 justify-center">Loading...</div>}
