@@ -24,10 +24,10 @@ export const ChatInput = () => {
   const handleSubmit = (e) => {
     if (isDisabled()) return
     setCooldown(true)
-    Meteor.call('sendMessage', prompt, localStorage.getItem('username'), (res) => {
+    Meteor.call('sendMessage', prompt, localStorage.getItem('username'), (error, result) => {
       setPrompt("")
-      inputElement.current.value = ""
       setTimeout(() => setCooldown(false), 5000)
+      if (!result) inputElement.current.value = ""
     })
   }
 
