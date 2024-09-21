@@ -19,7 +19,6 @@ Meteor.methods({
 
 Meteor.methods({
   async 'sendMessage'(message = "") {
-    console.log('process.env.FORBIDDEN_WORDS', process.env.FORBIDDEN_WORDS )
     if (message.length <= 3) return "Message too short"
     if (!isTextAllowed(message)) return "Message not allowed"
     await ChatCollection.insertAsync({ message: message, date: Number(new Date() )});
