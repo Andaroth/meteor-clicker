@@ -9,10 +9,10 @@ import { ClicksCollection } from '../api/clicks';
 export const Count = ({className,...buttonProps}) => {
   const [cooldown, setCooldown] = useState(false)
   const [appClicks, setAppClicks] = useState(0)
-  const isStarting = useSubscribe('clicks');
+  const isSubscribing = useSubscribe('clicks');
   const clicks = useFind(() => ClicksCollection.find());
 
-  const isLoading = () => isStarting() || cooldown
+  const isLoading = () => isSubscribing() || cooldown
 
   const increment = () => {
     if (isLoading()) return;
@@ -57,7 +57,7 @@ export const Count = ({className,...buttonProps}) => {
             onClick={increment}
             disabled={isLoading()}
           >{ cooldown ? "Please wait ..." : "Pointless button" }</button>
-          <small>({
+          <small className="text-center">({
             appClicks >= 50 ? "THAT'S LIFE BRIAN!" :
             appClicks >= 35 ? "side of life ♪" :
             appClicks >= 25 ? "On the bright" :
@@ -71,7 +71,7 @@ export const Count = ({className,...buttonProps}) => {
         <div className="flex flex-col sm:flex-row">
           <span
             className="flex flex-col bg-neutral-950 border-2 border-neutral-800 rounded-lg p-2 justify-center text-4xl"
-          >{!isStarting() ? clicks.sort((a,b) => b.index - a.index)[0].index : "many"}</span>
+          >{!isSubscribing() ? clicks.sort((a,b) => b.index - a.index)[0].index : "many"}</span>
           <span className="flex flex-col justify-center text-2xl mt-2 sm:mt-0 md:text-4xl">&nbsp;times!</span>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
 export const List = () => {
-  const isStarting = useSubscribe('allClicks');
+  const isSubscribing = useSubscribe('allClicks');
   const clicks = useFind(() => ClicksCollection.find());
 
   const formatDate = (dt) => {
@@ -31,7 +31,7 @@ export const List = () => {
         <small className="hidden sm:block leading-8">(20 last clicks)</small>
       </div>
       <div className="flex flex-col min-h-[200px] md:min-h-0 max-h-[calc(100dvh-520px)] overflow-auto grow">
-        { isStarting ? clicks.sort((a, b) => b.index - a.index)
+        { isSubscribing ? clicks.sort((a, b) => b.index - a.index)
           .map(cl => <div key={clicks.indexOf(cl)} className="flex flex-col justify-center min-w-[360px]">
             <div className="flex px-2 py-2 w-full border-b-2 border-[#333]">
               <p>{cl.index}</p>

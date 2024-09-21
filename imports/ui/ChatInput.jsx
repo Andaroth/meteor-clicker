@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import cn from "classnames";
 
 import { useSubscribe } from 'meteor/react-meteor-data';
 
@@ -7,19 +8,15 @@ export const ChatInput = () => {
   const [cooldown, setCooldown] = useState(false)
   const [prompt, setPrompt] = useState("")
 
-  const isStarting = useSubscribe('chat');
+  const isSubscribing = useSubscribe('chat');
 
-  const isDisabled = () => !(isStarting
-    || prompt.length <= 3
-    || prompt.length > 140
-    || cooldown
-  )
+  const isDisabled = () => (isSubscribing()
+  || prompt.length <= 3
+  || prompt.length > 140
+  || cooldown)
 
   const handleInputChanged = () => {
-    requestAnimationFrame(() => {
-      setPrompt(inputElement.current.value)
-      requestAnimationFrame(() => console.log("prompt", prompt))
-    })
+    setPrompt(inputElement.current.value)
   }
 
   const handleSubmit = (e) => {
@@ -45,7 +42,12 @@ export const ChatInput = () => {
           onKeyDown={(e) => e.key === "Enter" ? handleSubmit(e) : null}
         />
         <button
-          className="border-2 border-[#0F0] bg-[#0F0] text-black px-4 py-2 rounded-lg cursor-pointer hover:text-white hover:bg-black"
+          className={cn(
+            "border-2 px-4 py-2 rounded-lg",
+            !isDisabled()
+              ? "border-[#0F0] bg-[#0F0] cursor-pointer hover:text-white hover:bg-black text-black"
+              : "text-gray-400"
+          )}
           onClick={handleSubmit}
         >POST</button>
       </div>
