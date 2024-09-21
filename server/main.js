@@ -18,10 +18,10 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  async 'sendMessage'(message = "") {
+  async 'sendMessage'(message = "", username = "Anon") {
     if (message.length <= 3) return "Message too short"
     if (!isTextAllowed(message)) return "Message not allowed"
-    await ChatCollection.insertAsync({ message: message, date: Number(new Date() )});
+    await ChatCollection.insertAsync({ username: username, message: message, date: Number(new Date() )});
   }
 });
 

@@ -23,6 +23,7 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12"

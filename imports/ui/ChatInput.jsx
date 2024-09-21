@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cn from "classnames";
+
+import { faker } from '@faker-js/faker';
 
 import { useSubscribe } from 'meteor/react-meteor-data';
 
@@ -22,12 +24,16 @@ export const ChatInput = () => {
   const handleSubmit = (e) => {
     if (isDisabled()) return
     setCooldown(true)
-    Meteor.call('sendMessage', prompt, (res) => {
+    Meteor.call('sendMessage', prompt, localStorage.getItem('username'), (res) => {
       setPrompt("")
       inputElement.current.value = ""
       setTimeout(() => setCooldown(false), 5000)
     })
   }
+
+  useEffect(() => {
+    if (!localStorage.getItem('username')) localStorage.setItem('username', faker.person.firstName())
+  }, [])
 
   return <>
     <div className="flex w-full border-2 p-0 bg-black rounded-lg">
