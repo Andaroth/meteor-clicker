@@ -26,7 +26,7 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks == 0x32) {
+    if (appClicks == 0x1) {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
