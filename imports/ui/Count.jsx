@@ -6,8 +6,6 @@ import cn from "classnames"
 import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
-import { isMobile } from 'react-device-detect';
-
 export const Count = ({className,...buttonProps}) => {
   const [cooldown, setCooldown] = useState(false)
   const [appClicks, setAppClicks] = useState(0)
@@ -48,7 +46,7 @@ export const Count = ({className,...buttonProps}) => {
   }, [appClicks])
 
   return (
-    <div className="flex flex-col gap-2 my-16">
+    <div className="flex flex-col gap-2 mt-16 mb-8">
       <div className="flex justify-center">
         <div className="flex flex-col mb-4">
           <button
@@ -60,10 +58,10 @@ export const Count = ({className,...buttonProps}) => {
             disabled={isLoading()}
           >{ cooldown ? "Please wait ..." : "Pointless button" }</button>
           <small>({
-            appClicks >= 100 ? "THAT'S LIFE BRIAN!" :
-            appClicks >= 75 ? "side of life ♪" :
-            appClicks >= 50 ? "On the bright" :
-            appClicks >= 25 ? "Always look" :
+            appClicks >= 50 ? "THAT'S LIFE BRIAN!" :
+            appClicks >= 35 ? "side of life ♪" :
+            appClicks >= 25 ? "On the bright" :
+            appClicks >= 5 ? "Always look" :
             "caution: pointless"})</small>
         </div>
       </div>
@@ -73,7 +71,7 @@ export const Count = ({className,...buttonProps}) => {
         <div className="flex flex-col sm:flex-row">
           <span
             className="flex flex-col bg-neutral-950 border-2 border-neutral-800 rounded-lg p-2 justify-center text-4xl"
-          >{!isStarting() ? clicks[0].index : "many"}</span>
+          >{!isStarting() ? clicks.sort((a,b) => b.index - a.index)[0].index : "many"}</span>
           <span className="flex flex-col justify-center text-2xl mt-2 sm:mt-0 md:text-4xl">&nbsp;times!</span>
         </div>
       </div>

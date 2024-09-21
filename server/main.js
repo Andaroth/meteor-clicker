@@ -31,4 +31,8 @@ Meteor.startup(async () => {
     const one = await ClicksCollection.find({}, { limit: 1, sort: { date: -1 } })
     return one;
   });
+
+  Meteor.publish("allClicks", async function () {
+    return await ClicksCollection.find({}, { limit: 20, sort: { date: -1 } })
+  });
 });
