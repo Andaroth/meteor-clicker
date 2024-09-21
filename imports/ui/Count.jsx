@@ -26,7 +26,7 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks == 0x1) {
+    if (appClicks == 0x32) {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
@@ -47,7 +47,7 @@ export const Count = ({className,...buttonProps}) => {
 
   return (
     <div className="flex flex-col gap-2 mt-16 mb-8">
-      <div className="flex justify-center">
+      <div className="flex justify-center w-[400px] max-w-[calc(100vw-104px)]">
         <div className="flex flex-col mb-4">
           <button
             className={cn(
@@ -66,7 +66,7 @@ export const Count = ({className,...buttonProps}) => {
         </div>
       </div>
     
-      <p>Internet&nbsp;pressed this&nbsp;button</p>
+      <p className="text-center">Internet&nbsp;pressed this&nbsp;button</p>
       <div className="flex justify-center mt-2 sm:mt-0">
         <div className="flex flex-col sm:flex-row">
           <span

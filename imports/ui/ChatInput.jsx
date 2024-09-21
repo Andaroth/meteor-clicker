@@ -41,11 +41,11 @@ export const ChatInput = () => {
           placeholder="Type a message here..."
           onChange={handleInputChanged}
           maxLength={140}
-          className="bg-black text-white outline-none grow rounded-lg h-full"
+          className="bg-black text-white outline-none grow rounded-lg h-full max-w-[calc(100vw-192px)]"
           onKeyDown={(e) => e.key === "Enter" ? handleSubmit(e) : null}
         />
         <button
-          className="border-2 border-white bg-white text-black px-4 py-2 rounded-lg cursor-pointer hover:text-white hover:bg-black"
+          className="border-2 border-[#0F0] bg-[#0F0] text-black px-4 py-2 rounded-lg cursor-pointer hover:text-white hover:bg-black"
           onClick={handleSubmit}
         >POST</button>
       </div>

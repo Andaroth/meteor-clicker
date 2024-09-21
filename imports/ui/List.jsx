@@ -28,7 +28,7 @@ export const List = () => {
   return <div className="border-2 rounded-lg border-[#CCC] mx-auto w-[400px] max-w-[calc(100vw-104px)] grow">
       <div className="flex justify-center gap-2 p-2 border-b border-[#CCC]">
         <span className="text-lg">Details</span>
-        <small className="leading-8">(20 last clicks)</small>
+        <small className="hidden sm:block leading-8">(20 last clicks)</small>
       </div>
       <div className="flex flex-col min-h-[200px] md:min-h-0 max-h-[calc(100dvh-520px)] overflow-auto grow">
         { isStarting ? clicks.sort((a, b) => b.index - a.index)

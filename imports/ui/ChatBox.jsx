@@ -26,7 +26,7 @@ export const ChatBox = () => {
   return <div className="flex flex-col border-2 rounded-lg border-[#CCC] bg-black mx-auto w-[400px] max-w-[calc(100vw-104px)] max-h-[calc(100%-72px)]">
     <div className="flex justify-center gap-2 p-2 border-b border-[#CCC]">
       <span className="text-lg">Chat</span>
-      <small className="leading-8">(50 last messages)</small>
+      <small className="hidden sm:block leading-8">(50 last messages)</small>
     </div>
     <div className="flex flex-col-reverse justify-start h-64 md:h-full overflow-auto">
       { isStarting ? messages.sort((a, b) => b.date - a.date).map(msg => <div key={messages.indexOf(msg)} className="flex flex-col justify-center min-w-[360px]">
