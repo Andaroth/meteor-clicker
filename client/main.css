@@ -34,3 +34,9 @@ a:hover {
 h1, p, small {
   background-color: rgba(0,0,0,.3);
 }
+
+@media screen and (max-height: 580px) {
+  .nopano {
+    display: none;
+  }
+}
