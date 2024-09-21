@@ -19,7 +19,7 @@ export const App = () => {
         <Count/>
         { showList 
           ? <List />
-          : <a href="#" onClick={(e) => handleShowList(e)}>More details</a>
+          : <a className="mb-4 md:mb-0" href="#" onClick={(e) => handleShowList(e)}>View more details</a>
         }
         <div className="flex justify-center">
           <p className="flex flex-col md:flex-row gap-2 mt-4">
