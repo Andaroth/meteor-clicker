@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+
+import { faker } from '@faker-js/faker';
+
 import { CountComponent } from './CountComponent.jsx';
 import { ChatComponent } from './ChatComponent.jsx';
 import { AndaAudio } from './AndaAudio.jsx';
