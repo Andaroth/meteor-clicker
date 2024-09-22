@@ -13,8 +13,8 @@ export const ChatInput = () => {
   const isSubscribing = useSubscribe('chat');
 
   const isDisabled = () => (isSubscribing()
-  || prompt.length <= 3
-  || prompt.length > 140
+  || prompt.trim().length <= 3
+  || prompt.trim().length > 140
   || cooldown)
 
   const handleInputChanged = () => {
