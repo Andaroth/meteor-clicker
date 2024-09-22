@@ -27,8 +27,8 @@ export const AndaAudio = () => {
       className="flex fixed bottom-4 right-20 z-5 justify-center h-[60px] w-[60px] rounded-[50%] bg-white cursor-pointer"
       onClick={handleToggleMusic}
     >
-      <div className="flex flex-col justify-center select-none">
-        <div className="text-4xl">{ isPlaying ? "🔇" : "🔈"}</div>
+      <div className="flex flex-col h-full justify-center select-none text-4xl">
+        <div className={ isPlaying ? "text-blue-700" : "text-gray-600"}>{ isPlaying ? "🔇" : "🔈"}</div>
       </div>
     </button>
   </>
