@@ -7,18 +7,30 @@ import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 let count = 0
 
 Meteor.methods({
-  async 'clicked'(username = "Anonymous") {
+  async 'clicked'(name = "Anonymous", token = "") {
     if (!count) {
       const col = await ClicksCollection.find().fetch()
       count = col.length
     }
-    await ClicksCollection.insertAsync({ username: username, index: count, date: new Date() });
-    count += 1
+    const username = name.trim().length < 4 ? "Anon" : name
+    const _ = fetch(
+      "https://www.google.com/recaptcha/api/siteverify"
+      + "?secret=" + Meteor.settings.private.RECAPTCHA_SECRET_KEY
+      + "&response=" + token, 
+      { method: "POST" }
+    )
+      .then(r => r.json())
+      .then(async ({ success }) => {
+        if (success) {
+          await ClicksCollection.insertAsync({ username: username, index: count, date: new Date() });
+          count += 1
+        }
+      })
   }
 });
 
 Meteor.methods({
-  async 'sendMessage'(msg = "", name = "Anon", token = {}) {
+  async 'sendMessage'(msg = "", name = "Anon", token = "") {
     const message = msg.trim()
     const username = name.trim().length < 4 ? "Anon" : name
     if (message.length <= 3) return "Message too short"
