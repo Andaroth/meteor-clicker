@@ -18,10 +18,20 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  async 'sendMessage'(message = "", username = "Anon") {
+  async 'sendMessage'(message = "", username = "Anon", token = {}) {
     if (message.length <= 3) return "Message too short"
     if (!isTextAllowed(message)) return "Message not allowed"
-    await ChatCollection.insertAsync({ username: username, message: message, date: Number(new Date() )});
+    const _ = fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: "POST",
+      body: JSON.stringify({
+        secret: Meteor.settings.secret.RECAPTCHA_KEY,
+        response: token
+      })
+    }).then(async ({ success}) => {
+      if (success) {
+        await ChatCollection.insertAsync({ username: username, message: message, date: Number(new Date() )});
+      }
+    })
   }
 });
 

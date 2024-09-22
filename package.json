@@ -2,21 +2,22 @@
   "name": "meteor-app",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor run --settings settings-development.json ",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
+    "visualize": "meteor --production --extra-packages bundle-visualizer",
+    "deploy-production": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings settings-production.json andaclick.meteorapp.com"
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
+    "@faker-js/faker": "^9.0.1",
+    "autoprefixer": "^10.4.20",
     "classnames": "^2.5.1",
     "meteor-node-stubs": "^1.2.5",
+    "postcss": "^8.4.47",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
-    "@faker-js/faker": "^9.0.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12"
   },
   "meteor": {
