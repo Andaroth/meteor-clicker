@@ -2,4 +2,6 @@ node_modules/
 .vscode/
 .meteor/
 
-.env
+settings.json
+settings-development.json
+settings-production.json

@@ -1,0 +1,14 @@
+{
+  "public": {
+    "RECAPTCHA_SITE_KEY": "",
+    "FORBIDDEN_WORDS": "[]"
+  },
+  "private": {
+    "RECAPTCHA_SECRET_KEY": ""
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": ""
+    }
+  }
+}
