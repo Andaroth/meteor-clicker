@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { CountComponent } from './CountComponent.jsx';
 import { ChatComponent } from './ChatComponent.jsx';
 import { AndaCursor } from './AndaCursor.jsx';
 
 export const App = () => {
-  const [showList, setShowList] = useState(false)
-  const handleShowList = (e) => {
-    e?.preventDefault()
-    setShowList(true)
-  }
+  useEffect(() => {
+    if (!localStorage.getItem('username')) localStorage.setItem('username', faker.person.firstName())
+  }, [])
 
   return <>
     <div className="flex flex-col h-[100dvh] overflow-y-auto">

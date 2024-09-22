@@ -4,7 +4,7 @@ import { useFind, useSubscribe } from 'meteor/react-meteor-data';
 import { ClicksCollection } from '../api/clicks';
 
 export const List = () => {
-  const isSubscribing = useSubscribe('allClicks');
+  const isSubscribing = useSubscribe('clicks');
   const clicks = useFind(() => ClicksCollection.find());
 
   const formatDate = (dt) => {
@@ -18,9 +18,9 @@ export const List = () => {
     const ss = twoNums(dt.getSeconds())
     const ms = twoNums(dt.getMilliseconds())
 
-    return <p className="gap-2">
+    return <p className="gap-2 text-[#888]">
       <span>{`${dd}/${mm}/${yyyy}`}</span>
-      <span className="mx-2 text-[#888]">at</span>
+      <span className="mx-2">at</span>
       <span>{`${hh}h${mn}:${ss}'${ms}`}</span>
     </p>
   }
@@ -33,8 +33,9 @@ export const List = () => {
       <div className="flex flex-col min-h-[200px] md:min-h-0 max-h-[calc(100dvh-520px)] overflow-auto grow">
         { isSubscribing ? clicks.sort((a, b) => b.index - a.index)
           .map(cl => <div key={clicks.indexOf(cl)} className="flex flex-col justify-center min-w-[360px]">
-            <div className="flex px-2 py-2 w-full border-b-2 border-[#333]">
+            <div className="flex gap-2 px-2 py-2 w-full border-b-2 border-[#333]">
               <p>{cl.index}</p>
+              <p className="font-extrabold text-purple-600">{cl.username || "Anon"}</p>
               <div className="ml-2 w-full text-right">{formatDate(cl.date)}</div>
             </div>
           </div>

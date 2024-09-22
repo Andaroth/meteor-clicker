@@ -35,10 +35,6 @@ export const ChatInput = () => {
     });
   }
 
-  useEffect(() => {
-    if (!localStorage.getItem('username')) localStorage.setItem('username', faker.person.firstName())
-  }, [])
-
   return <>
     <div className="flex w-full border-2 p-0 bg-black rounded-lg">
       <div className="flex w-full gap-2 p-2">
