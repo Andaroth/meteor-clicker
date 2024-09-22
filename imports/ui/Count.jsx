@@ -17,7 +17,7 @@ export const Count = ({className,...buttonProps}) => {
   const increment = () => {
     if (isLoading()) return;
     setCooldown(true)
-    Meteor.call('clicked', () => {
+    Meteor.call('clicked', localStorage.getItem('username'), () => {
       setTimeout(() => {
         setCooldown(false)
         setAppClicks(appClicks + 1)

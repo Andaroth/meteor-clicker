@@ -32,7 +32,7 @@ export const ChatBox = () => {
       { isSubscribing ? messages.sort((a, b) => b.date - a.date).map(msg => <div key={messages.indexOf(msg)} className="flex flex-col justify-center min-w-[360px]">
           <div className="flex px-2 py-2 w-full border-t-2 border-[#333]">
             <p className="w-full">
-              <span className="font-extrabold text-purple-600">{msg.username || "Anon"}</span>
+              <span className="font-extrabold text-purple-600">{msg.username || "Anonymous"}</span>
               <span className="text-blue-500">&nbsp;&gt; </span>
               <span>{msg.message}</span>
             </p>

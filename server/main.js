@@ -7,28 +7,28 @@ import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 let count = 0
 
 Meteor.methods({
-  async 'clicked'() {
+  async 'clicked'(username = "Anonymous") {
     if (!count) {
       const col = await ClicksCollection.find().fetch()
       count = col.length
     }
-    await ClicksCollection.insertAsync({ index: count, date: new Date() });
+    await ClicksCollection.insertAsync({ username: username, index: count, date: new Date() });
     count += 1
   }
 });
 
 Meteor.methods({
-  async 'sendMessage'(msg = "", username = "Anon", token = {}) {
+  async 'sendMessage'(msg = "", name = "Anon", token = {}) {
     const message = msg.trim()
+    const username = name.trim().length < 4 ? "Anon" : name
     if (message.length <= 3) return "Message too short"
     if (!isTextAllowed(message)) return "Message not allowed"
     const _ = fetch(
       "https://www.google.com/recaptcha/api/siteverify"
       + "?secret=" + Meteor.settings.private.RECAPTCHA_SECRET_KEY
       + "&response=" + token, 
-      {
-        method: "POST"
-      })
+      { method: "POST" }
+    )
       .then(r => r.json())
       .then(async ({ success }) => {
         if (success) await ChatCollection.insertAsync({
@@ -50,13 +50,8 @@ Meteor.startup(async () => {
   DDPRateLimiter.setErrorMessage("You have to wait a few moments");
   
   Meteor.publish("clicks", async function () {
-    const one = await ClicksCollection.find({}, { limit: 1, sort: { date: -1 } })
+    const one = await ClicksCollection.find({}, { limit: 20, sort: { date: -1 } })
     return one;
-  });
-
-  Meteor.publish("allClicks", async function () {
-    const fetch = await ClicksCollection.find({}, { limit: 20, sort: { date: -1 } })
-    return fetch;
   });
 
   Meteor.publish("chat", async function () {
