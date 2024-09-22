@@ -21,13 +21,13 @@ export const App = () => {
       <footer className="flex ml-4 sm:ml-0 justify-start sm:justify-center">
         <nav className="flex flex-col md:flex-row gap-2 my-4 sm:text-center">
           <a href="https://github.com/Andaroth/meteor-clicker" target="_blank">Open on github</a>
-          <aside className="text-gray-600">or</aside>
+          <aside className="text-white">or</aside>
           <a href="https://andapirate.com" target="_blank">Visit my website</a>
         </nav>
       </footer>
     </div>
     <div className="ricky" />
-    <AndaCursor />
+    {/* <AndaCursor /> */}
     <AndaAudio />
   </>
 };

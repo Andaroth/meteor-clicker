@@ -11,6 +11,11 @@ body {
   transition: all .5s ease;
 }
 
+::selection {
+  color: #000;
+  background: #FFF;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
