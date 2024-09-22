@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { CountComponent } from './CountComponent.jsx';
 import { ChatComponent } from './ChatComponent.jsx';
+import { AndaAudio } from './AndaAudio.jsx';
 import { AndaCursor } from './AndaCursor.jsx';
 
 export const App = () => {
@@ -22,6 +23,8 @@ export const App = () => {
         </p>
       </div>
     </div>
+    <div className="ricky" />
     <AndaCursor />
+    <AndaAudio />
   </>
 };

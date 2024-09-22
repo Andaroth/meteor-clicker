@@ -25,7 +25,7 @@ export const List = () => {
     </p>
   }
 
-  return <div className="border-2 rounded-lg border-[#CCC] mx-auto w-[400px] max-w-[calc(100vw-104px)] grow">
+  return <div className="border-2 rounded-lg border-[#CCC] bg-black/50 mx-auto w-[400px] max-w-[calc(100vw-104px)] grow">
       <div className="flex justify-center gap-2 p-2 border-b border-[#CCC]">
         <span className="text-lg">Details</span>
         <small className="hidden sm:block leading-8">(20 last clicks)</small>
