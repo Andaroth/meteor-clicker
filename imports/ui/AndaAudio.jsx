@@ -24,10 +24,10 @@ export const AndaAudio = () => {
       onPlay={() => setIsPlaying(true)}
     ></audio>
     <button
-      className="flex fixed bottom-4 right-20 z-5 justify-center h-[60px] w-[60px] rounded-[50%] bg-white cursor-pointer"
+      className="flex fixed bottom-4 right-20 z-5 justify-center h-[56px] w-[56px] rounded-[50%] shadow bg-white cursor-pointer"
       onClick={handleToggleMusic}
     >
-      <div className="flex flex-col h-full justify-center select-none text-4xl">
+      <div className="flex flex-col h-full justify-center select-none text-3xl">
         <div className={ isPlaying ? "text-blue-700" : "text-gray-600"}>{ isPlaying ? "🔇" : "🔈"}</div>
       </div>
     </button>
