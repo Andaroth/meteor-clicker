@@ -45,7 +45,7 @@ Meteor.startup(async () => {
   count = col.length
 
   DDPRateLimiter.addRule({ type: 'method', name: 'clicked' }, 11, 1000) // ~10click / second
-  DDPRateLimiter.addRule({ type: 'method', name: 'sent' }, 1, 5000) // 1msg / 5s
+  DDPRateLimiter.addRule({ type: 'method', name: 'sendMessage' }, 1, 5000) // 1msg / 5s
 
   DDPRateLimiter.setErrorMessage("You have to wait a few moments");
   
