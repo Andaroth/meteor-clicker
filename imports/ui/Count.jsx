@@ -30,22 +30,16 @@ export const Count = ({className,...buttonProps}) => {
   };
 
   useEffect(() => {
-    if (appClicks == 0x32) {
+    if (appClicks == 1) {
       setInterval(() => {
         document.body.style.color = "#" + Math.floor(Math.random() * 0x3e7);
         document.body.style.background = "#" + Math.floor(Math.random() * 0x3e7);
       }, 500)
-      const ricky = document.createElement('div')
-      ricky.classList.add('ricky')
-      document.body.appendChild(ricky)
-      const audio = document.createElement('audio')
-      audio.id = "Rickroll_8bit_by_AstrDynamite"
-      audio.dataTestid = "audioPlayerAudio"
-      audio.autoplay = true
-      audio.loop = true
-      audio.src = "./ricky AstrDynamite.mp3"
-      audio.style.display = "none"
-      document.body.appendChild(audio)
+      const audioElem = document.getElementById("Rickroll_8bit_by_AstrDynamite")
+      if (audioElem && audioElem.paused) {
+        audioElem.volume = 0.3
+        audioElem.play()
+      }
     }
   }, [appClicks])
 
@@ -69,14 +63,16 @@ export const Count = ({className,...buttonProps}) => {
             "caution: pointless"})</small>
         </div>
       </div>
-    
-      <p className="text-center">Internet&nbsp;pressed this&nbsp;button</p>
+      
+      <div className="flex flex-col mx-auto">
+        <p className="text-center">Internet&nbsp;pressed this&nbsp;button</p>
+      </div>
       <div className="flex justify-center mt-2 sm:mt-0">
         <div className="flex flex-col sm:flex-row">
           <span
-            className="flex flex-col bg-neutral-950 border-2 border-neutral-800 rounded-lg p-2 justify-center text-4xl"
+            className="flex flex-col bg-neutral-950/50 border-2 border-neutral-800 rounded-lg p-2 justify-center text-4xl"
           >{!isSubscribing() ? clicks.sort((a,b) => b.index - a.index)[0].index : "many"}</span>
-          <span className="flex flex-col justify-center text-2xl mt-2 sm:mt-0 md:text-4xl">&nbsp;times!</span>
+          <span className="flex flex-col justify-center text-center text-2xl mt-2 sm:mt-0 md:text-4xl">&nbsp;times!</span>
         </div>
       </div>
     </div>
