@@ -8,8 +8,8 @@ export const List = () => {
   const clicks = useFind(() => ClicksCollection.find());
 
   const formatDate = (dt) => {
-    const twoNums = (str) => ("0" + str).slice(-2)
-    const dd = twoNums(dt.getUTCDay())
+    const twoNums = (num) => String(num).padStart(2, '0')
+    const dd = twoNums(dt.getDate())
     const mm = twoNums(dt.getUTCMonth())
     const yyyy = dt.getFullYear()
 
