@@ -8,9 +8,9 @@ export const ChatBox = () => {
   const messages = useFind(() => ChatCollection.find());
 
   const formatDate = (date) => {
-    const twoNums = (str) => ("0" + str).slice(-2)
+    const twoNums = (num) => String(num).padStart(2, '0')
     const dt = new Date(date)
-    const dd = twoNums(dt.getUTCDay())
+    const dd = twoNums(dt.getDate())
     const mm = twoNums(dt.getUTCMonth())
 
     const hh = twoNums(dt.getHours())
